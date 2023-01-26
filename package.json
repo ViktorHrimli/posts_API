@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run build && node build/index.js",
-    "start:dev": "npx nodemon",
+    "start:dev": "nodemon ./server.ts",
     "build": "rimraf ./build && tsc"
   },
   "author": "Viktor <viktorhrimli101@gmail.com>",
@@ -17,6 +17,7 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "@types/express": "^4.17.16",
     "@types/node": "^18.11.18",
     "nodemon": "^2.0.20",
     "rimraf": "^4.1.2",
