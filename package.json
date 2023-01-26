@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && node build/index.js",
+    "start": "npm run build && node build/server.js",
     "start:dev": "nodemon ./server.ts",
-    "build": "rimraf ./build && tsc"
+    "build": " ./build && tsc"
   },
   "author": "Viktor <viktorhrimli101@gmail.com>",
   "license": "ISC",
