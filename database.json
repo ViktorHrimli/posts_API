@@ -1,0 +1,50 @@
+[
+  {
+    "user": "Elon",
+    "tweets": "1000",
+    "followers": "100500",
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSL9HiqSX6YyCc75TWaveyuURZB75eOr1ly6Y_WWiHt&s"
+  },
+  {
+    "user": "Garry",
+    "tweets": "15",
+    "followers": "78",
+    "avatar": "https://gravatar.com/avatar/1f82b0492a0a938288c2d5b70534a1fb?s=400&d=robohash&r=x"
+  },
+  {
+    "user": "Vova",
+    "tweets": "1000",
+    "followers": "100500",
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuqkaINurEtlSRD22ZkaqxfM8oYqim-ayHRo5ex6lD&s"
+  },
+  {
+    "user": "Nona",
+    "tweets": "0",
+    "followers": "2000",
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQ1MEOl0lEd7LCAXd9kKpH9hwCTNzUpJLsBAb6wLx05g&s"
+  },
+  {
+    "user": "Arestovich",
+    "tweets": "10000",
+    "followers": "1",
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReOt6XJ8OgesiHRowZbukXGfHDpKn_jDL-pPcn5I_Ndg&s"
+  },
+  {
+    "user": "Elon",
+    "tweets": "500",
+    "followers": "200",
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR9WD3nXo5pjZtSC8Nft_EdgurvWaNkhwaGw&usqp=CAU"
+  },
+  {
+    "user": "Elon",
+    "tweets": "233",
+    "followers": "1209",
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtV5XUMjvfNrHjBbsbfDnFXl2qpqXp1ALH1A&usqp=CAU"
+  },
+  {
+    "user": "Elon",
+    "tweets": "546",
+    "followers": "5325232",
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCpoyUA2MTtQwpwj3v3M2VzhDeMyvVArNSRg&usqp=CAU"
+  }
+]

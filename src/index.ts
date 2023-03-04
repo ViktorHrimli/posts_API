@@ -4,6 +4,8 @@ const cors = require("cors");
 const path = require("path");
 require("dotenv").config();
 
+const usersRoute = require("./router/routes");
+
 const app: Express = express();
 
 const formatLog = app.get("env") === "development" ? "dev" : "short";
@@ -13,9 +15,9 @@ app.use(cors());
 app.use(express.json());
 
 const pathHTML = path.join(__dirname, "public");
-console.log(pathHTML);
 
 app.use("/static", express.static("public"));
+app.use("/api", usersRoute);
 
 app.get("/", (req: Request, res: Response, next: NextFunction) => {
   res.status(200).json("Worked!!!");
