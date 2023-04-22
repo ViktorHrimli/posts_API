@@ -24,7 +24,7 @@ router.post(
   upload.single("photo"),
   async (req: IType, res, next) => {
     const { name, surname, email, phone } = req.body;
-    res.send({ body: req.body, photo: req.file });
+    // res.send({ body: req.body, photo: req.file });
 
     if (!req.file) {
       res.status(400).json({ msg: "Filed" });
