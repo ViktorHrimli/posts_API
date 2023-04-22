@@ -17,6 +17,7 @@ app.use(express.json());
 const pathHTML = path.join(__dirname, "public");
 
 app.use("/static", express.static("public"));
+
 app.use("/api", usersRoute);
 
 app.get("/", (req: Request, res: Response, next: NextFunction) => {
