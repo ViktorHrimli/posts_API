@@ -28,8 +28,7 @@ router.post(
 
     if (!req.file) {
       res.status(400).json({ msg: "Filed" });
-    }
-    {
+    } else {
       const url = await uploadPhotoOnCloud(req.file.path);
 
       await sendEmail(name, surname, email, phone, url);
@@ -38,6 +37,8 @@ router.post(
         .unlink(req.file.path)
         .then(console.log("file destroy"))
         .catch((e: any) => console.log(e.message));
+
+      res.status(200).json({ name, surname, email, phone, url });
     }
   }
 );
