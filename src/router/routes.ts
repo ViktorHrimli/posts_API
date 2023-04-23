@@ -20,27 +20,23 @@ interface IType extends Request {
   file?: any;
 }
 
-router.post(
-  "/sendMail",
-  upload.single("photo"),
-  async (req: IType, res, next) => {
-    const { name, surname, email, phone } = req.body;
+router.post("/send", upload.single("photo"), async (req: IType, res, next) => {
+  const { name, surname, email, phone } = req.body;
 
-    if (!req.file) {
-      res.status(400).json({ msg: "Filed" });
-    } else {
-      const url = await uploadPhotoOnCloud(req.file.path);
+  if (!req.file) {
+    res.status(400).json({ msg: "Filed" });
+  } else {
+    const url = await uploadPhotoOnCloud(req.file.path);
 
-      await sendEmail(name, surname, email, phone, url);
+    await sendEmail(name, surname, email, phone, url);
 
-      await fs
-        .unlink(req.file.path)
-        .then(console.log("file destroy"))
-        .catch((e: any) => console.log(e.message));
+    await fs
+      .unlink(req.file.path)
+      .then(console.log("file destroy"))
+      .catch((e: any) => console.log(e.message));
 
-      res.status(200).json({ name, surname, email, phone, url });
-    }
+    res.status(200).json({ name, surname, email, phone, url });
   }
-);
+});
 
 module.exports = router;
