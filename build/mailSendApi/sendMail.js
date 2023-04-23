@@ -38,23 +38,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.sendEmail = void 0;
 var nodemailer = require("nodemailer");
-// const transporter = nodemailer.createTransport({
-//   service: "gmail",
-//   host: "smtp.gmail.com",
-//   port: 587,
-//   secure: true,
-//   auth: {
-//     user: "workviktornew@gmail.com",
-//     pass: "haobanjiaVik",
-//   },
-// });
+var _a = process.env, UA_PASS = _a.UA_PASS, UA_USER = _a.UA_USER;
 var config = {
     host: "smtp.meta.ua",
     port: 465,
     secure: true,
     auth: {
-        user: "viktor_hrimli@meta.ua",
-        pass: "Haobanjia233",
+        user: UA_USER,
+        pass: UA_PASS,
     },
 };
 var sendEmail = function (name, surname, email, phone, url) { return __awaiter(void 0, void 0, void 0, function () {
@@ -64,10 +55,10 @@ var sendEmail = function (name, surname, email, phone, url) { return __awaiter(v
             case 0:
                 transporter = nodemailer.createTransport(config);
                 mailOptions = {
-                    from: "viktor_hrimli@meta.ua",
+                    from: UA_USER,
                     to: "viktorhrimli101@gmail.com",
                     subject: "Example HTML Email",
-                    html: "\n    <html>\n      <body>\n        <h2>Contact Information</h2>\n        <p><strong>Name:</strong>".concat(name, "</p>\n        <p><strong>Surname:</strong> ").concat(surname, "</p>\n        <p><strong>Email:</strong> ").concat(email, "</p>\n        <p><strong>Phone:</strong>").concat(phone, "</p>\n \n      </body>\n    </html>\n\n  "),
+                    html: "\n    <html>\n      <body>\n        <h2>Contact Information</h2>\n\n        <p><strong>Name:</strong>".concat(name, "</p>\n\n        <p><strong>Surname:</strong> ").concat(surname, "</p>\n\n        <p><strong>Email:</strong> ").concat(email, "</p>\n\n        <p><strong>Phone:</strong>").concat(phone, "</p>\n\n        <img src=").concat(url, " />\n\n      </body>\n    </html>\n  "),
                 };
                 return [4 /*yield*/, transporter.sendMail(mailOptions)];
             case 1:

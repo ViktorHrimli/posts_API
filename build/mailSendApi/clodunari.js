@@ -38,12 +38,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.uploadPhotoOnCloud = void 0;
 var cloudinary = require("cloudinary").v2;
+var _a = process.env, CLOUD_NAME = _a.CLOUD_NAME, CLOUD_API_KEY = _a.CLOUD_API_KEY, CLOUD_API_SECREET = _a.CLOUD_API_SECREET;
 cloudinary.config({
-    cloud_name: "djoprd9i4",
-    api_key: "147198124453578",
-    api_secret: "D8yVv2i7e2JOmho2r-Hu5vA_6OA",
+    cloud_name: CLOUD_NAME,
+    api_key: CLOUD_API_KEY,
+    api_secret: CLOUD_API_SECREET,
 });
-var uploadPhotoOnCloud = function (photo, name) { return __awaiter(void 0, void 0, void 0, function () {
+var uploadPhotoOnCloud = function (photo) { return __awaiter(void 0, void 0, void 0, function () {
     var url;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -51,18 +52,15 @@ var uploadPhotoOnCloud = function (photo, name) { return __awaiter(void 0, void 
                     .upload(photo, {
                     public_id: "olympic_flag",
                 })
-                    .then(function (data) {
-                    console.log(data);
-                    console.log(data.secure_url);
-                })
+                    .then(function (data) { })
                     .catch(function (err) {
                     console.log(err);
                 })];
             case 1:
                 _a.sent();
                 url = cloudinary.url("olympic_flag", {
-                    width: 100,
-                    height: 150,
+                    width: 200,
+                    height: 250,
                     Crop: "fill",
                 });
                 return [2 /*return*/, url];

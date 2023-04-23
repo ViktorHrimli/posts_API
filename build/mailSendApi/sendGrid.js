@@ -35,55 +35,28 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var express_1 = __importDefault(require("express"));
-var sendMail_1 = require("../mailSendApi/sendMail");
-// import { sendMail } from "../mailSendApi/sendGrid";
-var storage_1 = require("../mailSendApi/storage");
-var clodunari_1 = require("../mailSendApi/clodunari");
-var fs = require("fs/promises");
-var Profile = require("../modle/model").Profile;
-var router = express_1.default.Router();
-router.get("/users", function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var users;
+exports.sendMail = void 0;
+var sgMail = require("@sendgrid/mail");
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+var sendMail = function (name, surname, email, phone, url) { return __awaiter(void 0, void 0, void 0, function () {
+    var msg;
     return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, Profile.find({})];
-            case 1:
-                users = _a.sent();
-                res.json(users);
-                return [2 /*return*/];
-        }
+        msg = {
+            from: "viktorhrimli101@gmail.com",
+            to: "viktor_hrimli@meta.ua",
+            subject: "Sending with SendGrid is Fun",
+            html: "\n    <html>\n      <body>\n        <h2>Contact Information</h2>\n\n        <p><strong>Name:</strong>".concat(name, "</p>\n\n        <p><strong>Surname:</strong> ").concat(surname, "</p>\n\n        <p><strong>Email:</strong> ").concat(email, "</p>\n\n        <p><strong>Phone:</strong>").concat(phone, "</p>\n\n        <img src=").concat(url, " />\n\n      </body>\n    </html>\n  "),
+        };
+        sgMail
+            .send(msg)
+            .then(function () {
+            console.log("Email sent");
+        })
+            .catch(function (error) {
+            console.error(error);
+        });
+        return [2 /*return*/];
     });
-}); });
-router.post("/send", storage_1.upload.single("photo"), function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, name, surname, email, phone, url;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
-            case 0:
-                _a = req.body, name = _a.name, surname = _a.surname, email = _a.email, phone = _a.phone;
-                if (!!req.file) return [3 /*break*/, 1];
-                res.status(400).json({ msg: "Filed" });
-                return [3 /*break*/, 5];
-            case 1: return [4 /*yield*/, (0, clodunari_1.uploadPhotoOnCloud)(req.file.path)];
-            case 2:
-                url = _b.sent();
-                return [4 /*yield*/, (0, sendMail_1.sendEmail)(name, surname, email, phone, url)];
-            case 3:
-                _b.sent();
-                return [4 /*yield*/, fs
-                        .unlink(req.file.path)
-                        .then(console.log("file destroy"))
-                        .catch(function (e) { return console.log(e.message); })];
-            case 4:
-                _b.sent();
-                res.status(200).json({ name: name, surname: surname, email: email, phone: phone, url: url });
-                _b.label = 5;
-            case 5: return [2 /*return*/];
-        }
-    });
-}); });
-module.exports = router;
+}); };
+exports.sendMail = sendMail;

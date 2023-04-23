@@ -7,7 +7,7 @@ const absolutePath = path.join("uploads");
 
 const storage = multer.diskStorage({
   destination: (req: any, file: any, cb: any) => {
-    cb(null, absolutePath);
+    cb(null, "uploads/");
   },
   filename: (req: any, file: any, cb: any) => {
     const [, extension] = file.originalname.split(".");

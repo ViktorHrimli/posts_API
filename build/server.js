@@ -9,7 +9,7 @@ mongoose
     .connect(DB)
     .then(function () {
     app.listen(PORT || 3001, function () {
-        console.log("Server running. Use our API on port: 3000");
+        console.log("Server running. Use our API on port: ".concat(PORT));
     });
     console.log("Database connection successful");
 })
