@@ -22,7 +22,7 @@ export const sendEmail = async (
   const transporter = nodemailer.createTransport(config);
 
   const mailOptions = {
-    from: "viktor_hrimli@meta.ua",
+    from: UA_USER,
     to: "viktorhrimli101@gmail.com",
     subject: "Example HTML Email",
     html: `

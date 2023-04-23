@@ -11,6 +11,7 @@
   "author": "Viktor <viktorhrimli101@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
     "cloudinary": "^1.36.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
