@@ -1,6 +1,7 @@
+import uniqid from "uniqid";
+
 const multer = require("multer");
 const path = require("path");
-import { uuid } from "uuidv4";
 
 const absolutePath = path.join("uploads");
 
@@ -11,7 +12,7 @@ const storage = multer.diskStorage({
   filename: (req: any, file: any, cb: any) => {
     const [, extension] = file.originalname.split(".");
 
-    cb(null, `${uuid()}.${extension}`);
+    cb(null, `${uniqid()}.${extension}`);
   },
   limits: {
     fileSize: process.env.SIZE_UPLOAD_IMG,
