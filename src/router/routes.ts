@@ -30,10 +30,10 @@ router.post("/send", upload.single("photo"), async (req: IType, res, next) => {
 
     await sendEmail(name, surname, email, phone, url);
 
-    await fs
-      .unlink(req.file.path)
-      .then(console.log("file destroy"))
-      .catch((e: any) => console.log(e.message));
+    // await fs
+    //   .unlink(req.file.path)
+    //   .then(console.log("file destroy"))
+    //   .catch((e: any) => console.log(e.message));
 
     res.status(200).json({ name, surname, email, phone, url });
   }
