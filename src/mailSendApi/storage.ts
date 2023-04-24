@@ -14,9 +14,6 @@ const storage = multer.diskStorage({
 
     cb(null, `${uniqid()}.${extension}`);
   },
-  limits: {
-    fileSize: process.env.SIZE_UPLOAD_IMG,
-  },
 });
 
 const upload = multer({ storage: storage });
