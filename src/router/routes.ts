@@ -26,14 +26,14 @@ router.post("/send", upload.single("photo"), async (req: IType, res, next) => {
   if (!req.file) {
     res.status(400).json({ msg: "Filed" });
   } else {
-    const replaceStr = req.file.path.replace(/\\/g, "/");
+    // const replaceStr = req.file.path.replace(/\\/g, "/");
 
-    const url = await uploadPhotoOnCloud(replaceStr);
+    const url = await uploadPhotoOnCloud(req.file.path);
 
     await sendEmail(name, surname, email, phone, url);
 
     await fs
-      .unlink(replaceStr)
+      .unlink(req.file.path)
       .then(console.log("file destroy"))
       .catch((e: any) => console.log(e.message));
 
