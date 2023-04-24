@@ -26,6 +26,8 @@ router.post("/send", upload.single("photo"), async (req: IType, res, next) => {
   if (!req.file) {
     res.status(400).json({ msg: "Filed" });
   } else {
+    console.log(req.file.path);
+
     const url = await uploadPhotoOnCloud(req.file.path);
 
     await sendEmail(name, surname, email, phone, url);
