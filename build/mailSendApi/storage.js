@@ -9,7 +9,7 @@ var multer = require("multer");
 var path = require("path");
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, "".concat(process.cwd(), "/src/uploads/"));
+        cb(null, "".concat(process.cwd(), "/uploads/"));
     },
     filename: function (req, file, cb) {
         var _a = file.originalname.split("."), extension = _a[1];
