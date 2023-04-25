@@ -8,17 +8,17 @@ cloudinary.config({
   api_secret: CLOUD_API_SECREET,
 });
 
-const uploadPhotoOnCloud = async (photo: string) => {
+const uploadPhotoOnCloud = async (photo: string, id: string) => {
   await cloudinary.uploader
     .upload(photo, {
-      public_id: "olympic_flag",
+      public_id: id,
     })
     .then((data: any) => {})
     .catch((err: any) => {
       console.log(err);
     });
 
-  const url = cloudinary.url("olympic_flag", {
+  const url = cloudinary.url(id, {
     width: 200,
     height: 250,
     Crop: "fill",
