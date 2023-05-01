@@ -40,13 +40,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
-var sendMail_1 = require("../mailSendApi/sendMail");
-// import { sendMail } from "../mailSendApi/sendGrid";
+var axios_1 = __importDefault(require("axios"));
+var uniqid_1 = __importDefault(require("uniqid"));
 var storage_1 = require("../mailSendApi/storage");
 var clodunari_1 = require("../mailSendApi/clodunari");
+var sendPulse_1 = require("../mailSendApi/sendPulse");
 var fs = require("fs/promises");
 var Profile = require("../modle/model").Profile;
 var router = express_1.default.Router();
+var _a = process.env, API_USER_ID = _a.API_USER_ID, API_SECRET = _a.API_SECRET;
 router.get("/users", function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
     var users;
     return __generator(this, function (_a) {
@@ -59,6 +61,14 @@ router.get("/users", function (req, res, next) { return __awaiter(void 0, void 0
         }
     });
 }); });
+router.post("/sendpulse", function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, name, surname, userMail, phone;
+    return __generator(this, function (_b) {
+        _a = req.body, name = _a.name, surname = _a.surname, userMail = _a.email, phone = _a.phone;
+        (0, sendPulse_1.sendPulseSendMail)(name, surname, userMail, phone);
+        return [2 /*return*/];
+    });
+}); });
 router.post("/send", storage_1.upload.single("photo"), function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, name, surname, email, phone, url;
     return __generator(this, function (_b) {
@@ -68,13 +78,12 @@ router.post("/send", storage_1.upload.single("photo"), function (req, res, next)
                 if (!!req.file) return [3 /*break*/, 1];
                 res.status(400).json({ msg: "Filed" });
                 return [3 /*break*/, 5];
-            case 1:
-                // const replaceStr = req.file.path.replace(/\\/g, "/");
-                console.log(req.file.path);
-                return [4 /*yield*/, (0, clodunari_1.uploadPhotoOnCloud)(req.file.path)];
+            case 1: return [4 /*yield*/, (0, clodunari_1.uploadPhotoOnCloud)(req.file.path, (0, uniqid_1.default)().toString())];
             case 2:
                 url = _b.sent();
-                return [4 /*yield*/, (0, sendMail_1.sendEmail)(name, surname, email, phone, url)];
+                return [4 /*yield*/, axios_1.default
+                        .post("https://api.elasticemail.com/v2/email/send?apikey=A0F18FD1F9C1B48C9EA88D64ED4B9F76F0EA620BF1E2BE560CF5630ED3DC08575A52C0E7FFE56DDF3AE4A893F675750C&bodyHtml=<html><body><h2>Contact Information</h2><p><strong>Name:</strong>".concat(name, "</p><p><strong>Surname:</strong> ").concat(surname, "</p><p><strong>Email:</strong> ").concat(email, "</p><p><strong>Phone:</strong>").concat(phone, "</p> <div><img src=").concat(url, " alt='photo' /> </div></body></html>&from=viktor_hrimli@meta.ua&to=viktorhrimli101@gmail.com"))
+                        .then(function (res) { return console.log(res.data); })];
             case 3:
                 _b.sent();
                 return [4 /*yield*/, fs

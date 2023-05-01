@@ -19,8 +19,6 @@ const uploadPhotoOnCloud = async (photo: string, id: string) => {
     });
 
   const url = cloudinary.url(id, {
-    width: 200,
-    height: 250,
     Crop: "fill",
   });
 

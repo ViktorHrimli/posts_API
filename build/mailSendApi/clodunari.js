@@ -44,13 +44,13 @@ cloudinary.config({
     api_key: CLOUD_API_KEY,
     api_secret: CLOUD_API_SECREET,
 });
-var uploadPhotoOnCloud = function (photo) { return __awaiter(void 0, void 0, void 0, function () {
+var uploadPhotoOnCloud = function (photo, id) { return __awaiter(void 0, void 0, void 0, function () {
     var url;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, cloudinary.uploader
                     .upload(photo, {
-                    public_id: "olympic_flag",
+                    public_id: id,
                 })
                     .then(function (data) { })
                     .catch(function (err) {
@@ -58,7 +58,7 @@ var uploadPhotoOnCloud = function (photo) { return __awaiter(void 0, void 0, voi
                 })];
             case 1:
                 _a.sent();
-                url = cloudinary.url("olympic_flag", {
+                url = cloudinary.url(id, {
                     width: 200,
                     height: 250,
                     Crop: "fill",

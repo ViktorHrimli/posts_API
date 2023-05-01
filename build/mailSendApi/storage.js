@@ -7,9 +7,10 @@ exports.upload = void 0;
 var uniqid_1 = __importDefault(require("uniqid"));
 var multer = require("multer");
 var path = require("path");
+var abs = path.resolve("src/uploads/");
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, "".concat(process.cwd(), "/uploads/"));
+        cb(null, abs);
     },
     filename: function (req, file, cb) {
         var _a = file.originalname.split("."), extension = _a[1];
