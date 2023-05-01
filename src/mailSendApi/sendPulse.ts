@@ -5,7 +5,7 @@ import axios from "axios";
 
 let TOKEN = "";
 
-axios.defaults.headers.common.Authorization = `Bearer ${TOKEN}`;
+// axios.defaults.headers.common.Authorization = `Bearer ${TOKEN}`;
 
 const { API_USER_ID, API_SECRET } = process.env;
 
