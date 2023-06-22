@@ -101,6 +101,10 @@ const sendPulseSendMail = async (
         name: "Виктор",
         email: "viktorhrimli101@gmail.com",
       },
+      {
+        name: "String World",
+        email: "sales.stringworld@gmail.com",
+      },
     ],
   });
 };
