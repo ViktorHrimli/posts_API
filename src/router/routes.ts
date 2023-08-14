@@ -31,6 +31,7 @@ router.post("/sendinfo", async (req, res, next) => {
   const { name = "", email = "", message = "" } = req.body;
   try {
     await sendPulseSendInfo({ name, email, message });
+    res.status(200).json(req.body);
   } catch (error) {
     res.status(400).json({ msg: "Filed" });
   }
